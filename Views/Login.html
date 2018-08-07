@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{>head}}
+	<title>mORMot App - Login</title>
+</head>
+<style>
+	.zoom {
+		transition: transform .2s; /* Animation */
+		width: 70px;
+		height: 70px;
+		margin: 1rem;
+	}
+	
+	.zoom:hover {
+		transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	}
+</style>
+<body>
+	<div class="uk-container">
+		<h3 class="uk-margin-top"><img class="zoom" src=".static/MichaelAnne.png"/> mORMot App - Login</h3>
+		{{#Scope}}
+		{{#err}}
+		<div class="uk-alert-danger" uk-alert>
+			<h6 style="margin: 0">{{err}}</h6>
+		</div>
+		{{/err}}
+		{{/Scope}}		
+		<form action="doLogin" method="post" uk-margin>
+			<input class="uk-input uk-width-1-1@s uk-width-1-3@m" type="password" name="PlainPassword" placeholder="Password" autofocus> <button class="uk-button uk-button-primary" type="submit"><span uk-icon="sign-in"></span> Log in</button>
+		</form>
+	</div>
+</body>
+</html>

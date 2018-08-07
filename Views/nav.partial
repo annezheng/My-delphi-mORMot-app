@@ -1,0 +1,14 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">				
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="default">Woordenlijst</a></li>
+            <li class="uk-active"><a href="goToPictures">Pictures</a></li>
+            <li class="uk-active"><a href="goToUseful">Useful</a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">				
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="goToAbout">About</a></li>
+        </ul>
+    </div>
+</nav>

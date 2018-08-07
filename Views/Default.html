@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{>head}}	
+	<title>mORMot App - WordList</title>
+	<style>
+		.uk-card-title {
+			margin: 0;
+			text-align: center;		
+		}
+	</style>
+</head>
+<body>	
+	{{>nav}}
+	<div class="uk-container uk-margin-bottom">
+		{{#Scope}}
+		<h3 class="uk-margin-top uk-margin-small-bottom">Welkom Bij Woordenlijst <a href="doLogout" uk-icon="icon: sign-out; ratio: 1.5" uk-tooltip="title: Log out; pos: right; animation: uk-animation-fade"></a></h3>
+		<p class="uk-text-meta uk-margin-remove-top">Version 1.0</p>
+		<h4 id="List">Woordenschat <span class="uk-text-meta">Vocabulary</span></h4>
+		<div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-flex" uk-grid>		
+			{{#words}}			
+			<div>
+				<div class="uk-card uk-card-small uk-card-primary uk-card-body uk-card-hover">
+					<h6 class="uk-card-title">						
+						{{word}} 
+						<a uk-icon="icon: minus-circle" uk-tooltip="title: Remove; pos: right; animation: uk-animation-fade" onclick="removeWord({{id}})"></a>
+					</h6>
+					<div uk-drop="offset: 1; mode: click; pos: bottom-center; animation: uk-animation-slide-top-small; duration: 300">						
+						<div class="uk-card uk-card-body uk-card-default uk-text-background uk-text-bold"> {{english}}</div>
+				    </div>
+				</div>
+			</div>
+			{{/words}}	
+			{{^words}}
+				<div class="uk-alert-warning uk-margin-left" uk-alert>			   
+				    <p>Uw woordenschat is leeg - Your word list is empty</p>
+				</div>			
+			{{/words}}		
+		</div>
+
+		<hr class="uk-divider-icon">		
+
+		<h4 id="Add" class="uk-text-primary">Voeg een Woord toe <span class="uk-text-meta">Add a Word</span></h4>
+		
+		<div class="row">
+			<form class="col s12" action="doAddWord" method="post">
+				<div class="row">
+					<div class="input-field col s6">
+						<i class="material-icons prefix">subtitles</i>
+						<input id="icon_prefix" type="text" class="validate" name="WordSelf">
+						<label for="icon_prefix">Voer het Nederlands woord in - Enter the Dutch word</label>
+					</div>
+					<div class="input-field col s6">
+						<i class="material-icons prefix">comment</i>
+						<input id="icon_telephone" type="tel" class="validate" name="WordEnglish">
+						<label for="icon_telephone">Voer de Engelse betekenis in - Enter the English meaning</label>
+					</div>
+					<button class="uk-button uk-button-primary">ADD/TOEVOEGEN</button>
+					{{#ar_msg}}
+					<div class="uk-alert-danger" uk-alert>
+						<h4>{{ar_msg}}</h4>
+					</div>
+					{{/ar_msg}}
+				</div>
+			</form>
+		</div>
+		{{/Scope}}
+	</div>
+
+	<script>
+		function removeWord(id) {
+			UIkit.modal.confirm('Are you sure you want to remove this word?').then(function() {
+				window.location.replace('doRemoveWord?id=' + id);
+			});
+		}	
+	</script>
+</body>
+</html>

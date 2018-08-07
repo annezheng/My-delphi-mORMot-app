@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{>head}}
+	<title>mORMot App - Pictures</title>
+</head>
+<body>	
+	{{>nav}}
+	<div class="uk-container">          
+		{{#Scope}}
+		<h3 class="uk-margin-top uk-margin-bottom">Afbeeldingen - Pictures <a href="doLogout" uk-icon="icon: sign-out; ratio: 1.5" uk-tooltip="title: Log out; pos: right; animation: uk-animation-fade"></a></h3>
+        <div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="autoplay: true">
+            <ul class="uk-slideshow-items">
+                {{#pictures}}
+                    <li>
+                        <img src={{picture}} alt="" uk-cover>
+                        <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">                            
+                            <p class="uk-margin-remove">{{picture}}</p>
+                        </div>
+                    </li>
+                {{/pictures}}
+                {{^pictures}}
+                    <div class="uk-alert-warning uk-margin-left" uk-alert>			   
+                        <p>Geen foto's gevonden</p>
+                    </div>			
+                {{/pictures}}	                
+            </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>        
+        </div>    
+        <hr class="uk-divider-icon">
+        <br>
+
+		<h4 id="Add" class="uk-text-primary">Voeg een beeldlocatie toe 
+            <span class="uk-text-meta">Add an Image Location</span>           
+        </h4>
+        <ul class="uk-list">
+            <li><a target="_blank" href='https://www.pexels.com'>https://www.pexels.com</a></li>
+            <li><a target="_blank" href='https://unsplash.com/'>https://unsplash.com/</a></li>
+        </ul>  
+        	
+		<div>			
+			<form action="doAddPicture" method="post" uk-margin>				
+				<input class="uk-input uk-width-1-1@m uk-width-1-3@l" type="text" name="Picture" placeholder="Voer de beeldlocatie in - Enter Image Location" required> 
+				<button class="uk-button uk-button-primary">ADD/TOEVOEGEN</button>
+				{{#ar_msg}}
+				<div class="uk-alert-danger" uk-alert>
+					<h4>{{ar_msg}}</h4>
+				</div>
+				{{/ar_msg}}
+			</form>					
+        </div>  
+        <br>   
+        <hr class="uk-divider-icon">
+   
+        <div class=" uk-h2 uk-text-primary">Uw Afbeeldingen 
+            <span class="uk-text-meta">Your Pictures</span>           
+        </div>
+        {{#pictures}}        
+        <ul class="uk-list uk-list-striped">
+            <li>
+                {{picture}} 
+                <a uk-icon="icon: minus-circle" uk-tooltip="title: Remove; pos: right; animation: uk-animation-fade" onclick="removePicture({{id}})"></a>
+            </li>
+        </ul>  
+        {{/pictures}}
+        <br>		
+        {{/Scope}}
+    </div>
+    
+    <script>
+        function removePicture(id) {
+            UIkit.modal.confirm('Are you sure want to remove this picture link?').then(function() {
+                window.location.replace('doRemovePicture?id=' + id);
+            });
+        }	
+    </script>
+</body>
+</html>
