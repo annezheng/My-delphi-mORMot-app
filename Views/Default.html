@@ -21,9 +21,11 @@
 			{{#words}}			
 			<div>
 				<div class="uk-card uk-card-small uk-card-primary uk-card-body uk-card-hover">
-					<h6 class="uk-card-title">						
-						{{word}} 
-						<a uk-icon="icon: minus-circle" uk-tooltip="title: Remove; pos: right; animation: uk-animation-fade" onclick="removeWord({{id}})"></a>
+					<h6 class="uk-card-title" style="display: flex;" >						
+						<div style="flex: 1;">{{word}}</div>
+						<div>					
+							<a uk-icon="icon: minus-circle" uk-tooltip="title: Remove; pos: right; animation: uk-animation-fade" onclick="removeWord({{id}})"></a>
+						</div>	
 					</h6>
 					<div uk-drop="offset: 1; mode: click; pos: bottom-center; animation: uk-animation-slide-top-small; duration: 300">						
 						<div class="uk-card uk-card-body uk-card-default uk-text-background uk-text-bold"> {{english}}</div>
